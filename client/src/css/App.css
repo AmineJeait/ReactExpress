@@ -1,0 +1,120 @@
+/* welcome component*/
+
+.welcome,.form {
+	border:1px black solid;
+	width: 40%;
+	margin: 20% auto;
+	padding:2%;
+	
+}
+
+
+
+.welcome h3 , .form h3{
+	text-align: center;
+}
+
+
+/* nav component*/
+
+nav li{
+	margin : 2%;
+}
+
+
+
+/* login && register components*/
+.form .buttons {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 5%;
+}
+.form .link,.form p{
+	margin:auto 0;
+}
+
+
+/* home component*/
+
+.home{
+	margin-top:5%;
+}
+
+
+.home .list-group li{
+	display:flex;
+	justify-content: space-between;
+}
+
+.home .list-group p{
+	margin:auto 0;
+}
+
+.home .mini-form{
+	margin:5% auto;
+	display:flex;
+	justify-content: space-evenly;
+}
+
+.home .mini-form input{
+	width: 75%;
+}
+
+.home .nave{
+	display:flex;
+	justify-content: space-between;
+}
+
+
+
+body{
+	background-color: #dee2e6 !important;
+}
+
+
+
+
+.pagination {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 10px 20px;
+    text-align: center;
+
+    border-radius: 8px;
+    
+    /* Center numbers inside */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Equal spacing between items */
+}
+
+/* Ensure pagination items behave properly */
+.pagination a, 
+.pagination li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px; /* Ensures uniform size */
+    height: 35px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background: #f1f1f1; /* Light background */
+}
+
+
+.list-group button , .table tr button{
+	justify-content: space-between;
+	margin-left: 5px;
+}
+
+
+.dropdown-menu li :hover{
+	background-color:#0d6efd;
+	color:white;
+}
