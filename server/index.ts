@@ -100,6 +100,7 @@ app.post("/api/register", (req,res) =>{
 
 
 app.post("/api/login",  (req,res)=>{
+    resetResponse(jsonResponse)
     let name = req.body.name;
     let password = req.body.password;
     db.one('SELECT * FROM utilisateurs where name = $1',name)
@@ -141,7 +142,7 @@ app.post("/api/home", authentificateToken ,(req,res) =>{
     .then((role)=>{
         console.log(role);
         if(role.role == "admin"){   
-            db.any('SELECT * from utilisateurs ')
+            db.any('SELECT * from utilisateurs where id != $1 ',decodedToken.id)
             .then((users)=>{
                 for( let i = 0;i<users.length ;i++){
                         jsonResponse.data.push(users[i].id+':'+users[i].name+':'+users[i].status+':'+users[i].role);
@@ -166,6 +167,7 @@ app.post("/api/home", authentificateToken ,(req,res) =>{
                     }
                     console.log(Data[i])
                 }
+                jsonResponse.role = "user";
                 res.send(jsonResponse);
                 res.status(200);
                 console.log(jsonResponse)
@@ -293,7 +295,7 @@ app.post("/api/admin/deactivate",authentificateToken ,(req,res)=>{
     resetResponse(jsonResponse);
     const decodedToken:User = req.user;
     console.log(req.body.id);
-    db.none("UPDATE utilisateurs SET status = 'bloque' WHERE id=$1",req.body.ID)
+    db.none("UPDATE utilisateurs SET status = 'bloque' , name = concat(name,'%') WHERE id=$1",req.body.ID)
     .then(()=>{
         res.send(jsonResponse);
     })
@@ -308,7 +310,7 @@ app.post("/api/admin/activate",authentificateToken ,(req,res)=>{
     resetResponse(jsonResponse);
     const decodedToken:User = req.user;
     console.log(req.body.id);
-    db.none("UPDATE utilisateurs SET status = 'active' WHERE id=$1",req.body.ID)
+    db.none("UPDATE utilisateurs SET status = 'active',  name = trim('%' from name) WHERE id=$1",req.body.ID)
     .then(()=>{
         res.send(jsonResponse);
     })

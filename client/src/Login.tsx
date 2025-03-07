@@ -29,6 +29,9 @@ function Login(){
         if(pro.data == "Incorrect information"){
             setMessage("Incorrect username or password");
         }
+        if(pro.data == "compte bloqué"){
+            setMessage("compte bloqué");
+        }
         if(pro.data.status == "ok"){
             localStorage.setItem("Token",Token);
             navigate('/home',{

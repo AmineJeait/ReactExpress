@@ -22,6 +22,7 @@ function List(props){
         let inputs = document.getElementsByName("inputs");
         let data = document.getElementsByName("data");
         let cancel = document.getElementsByName("can");
+        let archive = document.getElementsByName("archive");
 
 
 
@@ -34,6 +35,7 @@ function List(props){
                 inputs[i].placeholder = placeholder;
                 data[i].style.display = "none";
                 cancel[i].style.display="inline";
+                archive[i].style.display = "none";
             }
             
         }
@@ -127,14 +129,14 @@ function List(props){
                     const splittedData = props.data[oneKey].split(':')
                     console.log(i)
                     return (
-                        <li className="list-group-item" key={i} value={splittedData[0]} >
+                        <li className="list-group-item" key={i} value={splittedData[0]} > 
 
                             <input maxLength={maxLength}  type="text" name="inputs" className="form-contro" placeholder="" style = {{display:"none"}} onChange={(e)=>{setValue(e.target.value)}} />
                             <p name="data">{splittedData[1]}</p>
                             <div className="buttons">
                                 <button className="btn btn-outline-success" style={{display:"none"}} name="ok" onClick={()=>handleOkClick(i,splittedData[0])}>Save</button> 
                                 <button className="btn btn-outline-primary" name ="mod"  onClick={()=>handleModClick(i,splittedData[1])}>Modify</button>
-                                <button className="btn btn-outline-warning" onClick={()=>props.handleClick(splittedData[0])}>Archive</button>
+                                <button className="btn btn-outline-warning" name = "archive" onClick={()=>props.handleClick(splittedData[0])}>Archive</button>
                                 <button className="btn btn-outline-danger" style={{display:"none"}} name="can" onClick={()=>handleCancelClick(splittedData[0])}>Cancel</button>
                             </div>
                         </li>

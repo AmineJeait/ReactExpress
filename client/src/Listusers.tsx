@@ -14,11 +14,13 @@ function Listusers(props){
 
 
 
-    const handleDelClick = (id:number)=> {
-        const pro =  axios.post("http://localhost:8080/api/admin/del",{ID:id,Token:token});
-        window.location.reload();
-    }
+     const handleDelClick = (id:number)=> {
+         const pro =  axios.post("http://localhost:8080/api/admin/del",{ID:id,Token:token});
+         window.location.reload();
+     }
         
+
+     
 
     const handleDeactivateClick = (id:number) =>{
         const pro =  axios.post("http://localhost:8080/api/admin/deactivate",{ID:id,Token:token});
